@@ -2,6 +2,25 @@
 
 All notable changes to StudyX. Newest first.
 
+## 2026-11-15 — Footer social links
+
+### Added
+- **`src/data/socialLinks.ts`**: the footer's social profiles in one editable list —
+  Instagram, X, LinkedIn, GitHub, in that order. A link with an empty url is skipped when
+  rendering, so an unfinished profile can never become a dead button.
+- **`src/components/ui/SocialIcons.tsx`**: inline SVG brand marks (Instagram, X, LinkedIn,
+  GitHub) drawn with `currentColor`. No icon package was added — `lucide-react` has no brand icons.
+- **`src/components/landing/FooterSocialLinks.tsx`**: the social row. 44px touch targets,
+  opens in a new tab with `rel="noopener noreferrer"`, hover in `#8DB9F0`, a small Motion
+  hover/press animation that is skipped when reduced motion is on, and a focus-visible ring.
+- **Types**: `SocialLink` and `SocialIconName` in `src/types/index.ts`.
+
+### Changed
+- **Footer**: the three mail / code / globe icon buttons are replaced by the social row.
+- **Footer**: removed the Company column (About StudyX, Careers, Privacy policy, Terms of
+  service). None of those pages exist, so all four links pointed back to `/`. The footer now
+  only lists pages that actually open.
+
 ## 2026-11-15 — Milestone 1, wording cleanup, deployment prep
 
 ### Added

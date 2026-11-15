@@ -87,6 +87,16 @@ export interface ResourceRequest {
   createdAt: string
 }
 
+export type SocialIconName = 'instagram' | 'x' | 'linkedin' | 'github'
+
+export interface SocialLink {
+  /** Platform name, also used for the accessible label ("StudyX on X"). */
+  name: string
+  /** Full profile URL, opened in a new tab. An empty string hides the button. */
+  url: string
+  icon: SocialIconName
+}
+
 export type ToastTone = 'info' | 'success' | 'error'
 
 export interface ToastItem {

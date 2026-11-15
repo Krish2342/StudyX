@@ -1,7 +1,11 @@
-import { Code, Globe, Mail } from 'lucide-react'
-import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
+import { FooterSocialLinks } from '@/components/landing/FooterSocialLinks'
 
+/*
+ * Only pages that exist are listed here. Anything without a real destination
+ * stays out of the footer until it is built — a footer full of links back to
+ * the home page is worse than no link at all.
+ */
 const columns = [
   {
     heading: 'Product',
@@ -21,15 +25,6 @@ const columns = [
       { label: 'Settings', to: '/app/settings' },
     ],
   },
-  {
-    heading: 'Company',
-    links: [
-      { label: 'About StudyX', to: '/' },
-      { label: 'Careers', to: '/' },
-      { label: 'Privacy policy', to: '/' },
-      { label: 'Terms of service', to: '/' },
-    ],
-  },
 ]
 
 const YEAR = new Date().getFullYear()
@@ -38,8 +33,8 @@ export function Footer() {
   return (
     <footer className="border-t border-white/[0.08] bg-ink-raised/60">
       <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8">
-        <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
-          <div className="flex flex-col items-start gap-4">
+        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr]">
+          <div className="flex flex-col items-start gap-4 sm:col-span-2 lg:col-span-1">
             <Link to="/" className="flex items-center gap-2.5" aria-label="StudyX home">
               <span className="grid size-8 place-items-center rounded-lg bg-sky font-display text-sm font-bold text-ink">S</span>
               <span className="font-display text-lg font-semibold text-paper">StudyX</span>
@@ -48,17 +43,7 @@ export function Footer() {
               The AI-powered study platform that helps college students find, understand and share
               their material.
             </p>
-            <div className="flex gap-2">
-              <SocialLink href="mailto:hello@studyx.example" label="Email StudyX">
-                <Mail className="size-4" />
-              </SocialLink>
-              <SocialLink href="https://github.com" label="StudyX source code">
-                <Code className="size-4" />
-              </SocialLink>
-              <SocialLink href="https://studyx.example" label="StudyX website">
-                <Globe className="size-4" />
-              </SocialLink>
-            </div>
+            <FooterSocialLinks />
           </div>
 
           {columns.map((col) => (
@@ -90,17 +75,5 @@ export function Footer() {
         </div>
       </div>
     </footer>
-  )
-}
-
-function SocialLink({ href, label, children }: { href: string; label: string; children: ReactNode }) {
-  return (
-    <a
-      href={href}
-      aria-label={label}
-      className="grid size-9 place-items-center rounded-lg border border-white/10 text-paper-faint transition-colors hover:border-sky/40 hover:text-sky"
-    >
-      {children}
-    </a>
   )
 }

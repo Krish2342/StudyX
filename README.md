@@ -53,7 +53,8 @@ src/
 │   │                 NotificationMenu, ProfileMenu
 │   ├── navigation/   navConfig, AnimatedLink
 │   ├── landing/      Hero, AiShowcase, ResourceShowcase, BentoFeatures,
-│   │                 HowItWorks, FinalCta, Footer, Navbar, Reveal
+│   │                 HowItWorks, FinalCta, Footer, FooterSocialLinks,
+│   │                 Navbar, Reveal
 │   └── dashboard/    Greeting, Continue, AiTools, ResourceList, Requests,
 │                     Activity, QuickActions
 ├── pages/            Landing, Dashboard, Placeholder, NotFound
