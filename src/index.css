@@ -18,7 +18,7 @@
 
   --color-paper: #ffffff; /* 30% — white */
   --color-paper-dim: #a3a3a3; /* white at ~64% — secondary text */
-  --color-paper-faint: #6b6b6b; /* white at ~42% — tertiary text */
+  --color-paper-faint: #8f8f8f; /* tertiary text — kept at 5.8:1 on #121212 for WCAG AA */
 
   --color-sky: #8db9f0; /* 10% — soft blue accent */
   --color-sky-bright: #a8cbf7; /* soft blue, lighter step for hover */
@@ -173,6 +173,23 @@
 
   .no-scrollbar::-webkit-scrollbar {
     display: none;
+  }
+
+  /* --- Tasteful 3D: CSS-only perspective helpers (no three.js) --- */
+  .perspective-1200 {
+    perspective: 1200px;
+  }
+
+  .perspective-800 {
+    perspective: 800px;
+  }
+
+  /* Truncate to n lines where the browser lacks line-clamp support */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
   }
 }
 

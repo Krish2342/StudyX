@@ -1,122 +1,117 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import { lazy, Suspense, useEffect } from 'react'
+import { Route, Routes, useLocation } from 'react-router-dom'
+import { PageLoader } from '@/components/ui/PageLoader'
 
-function App() {
-  const [count, setCount] = useState(0)
+/*
+ * Every route is code-split, so a first-time visitor to the landing page
+ * never downloads the dashboard bundle (and vice versa).
+ */
+const Landing = lazy(() => import('@/pages/Landing').then((m) => ({ default: m.Landing })))
+const Dashboard = lazy(() => import('@/pages/Dashboard').then((m) => ({ default: m.Dashboard })))
+const AppShell = lazy(() =>
+  import('@/components/layout/AppShell').then((m) => ({ default: m.AppShell })),
+)
+const Placeholder = lazy(() =>
+  import('@/pages/Placeholder').then((m) => ({ default: m.Placeholder })),
+)
+const NotFound = lazy(() => import('@/pages/NotFound').then((m) => ({ default: m.NotFound })))
 
+/** Sections that exist in the navigation but are not open yet. */
+const upcomingSections = [
+  {
+    path: 'explore',
+    title: 'Explore',
+    description:
+      'Resource categories, filters, sorting, resource detail pages and submission forms.',
+  },
+  {
+    path: 'saved',
+    title: 'Saved',
+    description:
+      'Everything you bookmarked, with filters by category, subject and semester.',
+  },
+  {
+    path: 'ai',
+    title: 'AI Tools',
+    description:
+      'Thirteen study tools for assignments, quizzes, flashcards, translations and study plans.',
+  },
+  {
+    path: 'study-space',
+    title: 'My Study Space',
+    description:
+      'Saved resources, AI history, quizzes, flashcards, study plans and submissions.',
+  },
+  {
+    path: 'community',
+    title: 'Community',
+    description: 'Subject-based discussions: ask, reply, like, search and filter.',
+  },
+  {
+    path: 'requests',
+    title: 'Resource Requests',
+    description: 'Request missing notes, books and papers — and track their status.',
+  },
+  {
+    path: 'support',
+    title: 'Support',
+    description: 'Raise a ticket and follow its progress from open to resolved.',
+  },
+  {
+    path: 'notifications',
+    title: 'Notifications',
+    description: 'Approvals, fulfilled requests, admin replies and announcements.',
+  },
+  {
+    path: 'profile',
+    title: 'Profile',
+    description: 'Your academic details, preferred language and answer style.',
+  },
+  {
+    path: 'settings',
+    title: 'Settings',
+    description: 'Account preferences, appearance and privacy controls.',
+  },
+]
+
+/** Scroll to the top whenever the path changes. */
+function ScrollToTop() {
+  const { pathname } = useLocation()
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'auto' })
+  }, [pathname])
+  return null
+}
+
+export default function App() {
   return (
     <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+      <ScrollToTop />
+      <Suspense fallback={<PageLoader />}>
+        <Routes>
+          {/* Public experience */}
+          <Route path="/" element={<Landing />} />
 
-      <div className="ticks"></div>
+          {/* App experience (shell = sidebar + top bar + bottom nav) */}
+          <Route path="/app" element={<AppShell />}>
+            <Route index element={<Dashboard />} />
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+            {upcomingSections.map((section) => (
+              <Route
+                key={section.path}
+                path={section.path}
+                element={
+                  <Placeholder title={section.title} description={section.description} />
+                }
+              />
+            ))}
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
+            <Route path="*" element={<NotFound />} />
+          </Route>
+
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Suspense>
     </>
   )
 }
-
-export default App

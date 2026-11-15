@@ -2,15 +2,58 @@
 <html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary metadata -->
+    <title>StudyX — Find it. Study it. Actually understand it.</title>
     <meta
       name="description"
-      content="StudyX — find, study, understand, practice, prepare and share college study material with AI-powered study tools."
+      content="StudyX brings your college notes, books, previous year papers and 13 AI study tools into one focused workspace. Filter by college, branch and semester."
     />
+    <link rel="canonical" href="https://studyx.vercel.app/" />
+    <meta name="robots" content="index, follow" />
+    <meta name="color-scheme" content="dark" />
     <meta name="theme-color" content="#0A0A0A" />
-    <title>StudyX — AI-powered study platform for college students</title>
+    <meta name="author" content="StudyX" />
 
+    <!-- Icons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- Open Graph (WhatsApp, LinkedIn, Facebook, Discord, Slack) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="StudyX" />
+    <meta property="og:locale" content="en_IN" />
+    <meta property="og:url" content="https://studyx.vercel.app/" />
+    <meta property="og:title" content="StudyX — Find it. Study it. Actually understand it." />
+    <meta
+      property="og:description"
+      content="College notes, previous year papers and 13 AI study tools in one focused workspace. Built around the way your exams actually mark answers."
+    />
+    <meta property="og:image" content="https://studyx.vercel.app/og-image.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="StudyX — Find it. Study it. Actually understand it."
+    />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="StudyX — Find it. Study it. Actually understand it." />
+    <meta
+      name="twitter:description"
+      content="College notes, previous year papers and 13 AI study tools in one focused workspace."
+    />
+    <meta name="twitter:image" content="https://studyx.vercel.app/og-image.png" />
+    <meta
+      name="twitter:image:alt"
+      content="StudyX — Find it. Study it. Actually understand it."
+    />
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -20,6 +63,15 @@
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <div style="max-width: 40rem; margin: 15vh auto; padding: 0 1.5rem; font-family: system-ui, sans-serif; color: #ffffff; background: #0a0a0a; text-align: center;">
+        <h1 style="font-size: 1.5rem; margin-bottom: 0.75rem;">StudyX needs JavaScript</h1>
+        <p style="color: #a3a3a3; line-height: 1.6;">
+          This app is built with React and needs JavaScript enabled to run. Please turn it on in your
+          browser settings and reload this page.
+        </p>
+      </div>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
