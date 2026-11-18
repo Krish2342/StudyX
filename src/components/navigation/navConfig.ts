@@ -27,11 +27,11 @@ export interface NavItem {
 export const sidebarItems: NavItem[] = [
   { label: 'Dashboard', path: '/app', icon: LayoutDashboard },
   { label: 'Explore', path: '/app/explore', icon: Compass },
-  { label: 'AI Tools', path: '/app/ai', icon: Sparkles, badge: 13 },
+  { label: 'AI Tools', path: '/app/ai', icon: Sparkles },
   { label: 'Saved', path: '/app/saved', icon: Bookmark },
   { label: 'My Study Space', path: '/app/study-space', icon: GraduationCap },
   { label: 'Community', path: '/app/community', icon: MessageSquare },
-  { label: 'Requests', path: '/app/requests', icon: FileText, badge: 3 },
+  { label: 'Requests', path: '/app/requests', icon: FileText },
   { label: 'Support', path: '/app/support', icon: LifeBuoy },
 ]
 

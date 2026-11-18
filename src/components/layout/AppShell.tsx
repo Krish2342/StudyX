@@ -67,12 +67,12 @@ export function AppShell() {
               animate={{ x: 0 }}
               exit={{ x: -280 }}
               transition={{ type: 'spring', stiffness: 380, damping: 38 }}
-              className="fixed inset-y-0 left-0 z-50 flex w-72 flex-col border-r border-white/[0.08] bg-ink-raised lg:hidden"
+              className="fixed inset-y-0 left-0 z-50 flex w-72 flex-col border-r border-white/8 bg-ink-raised lg:hidden"
               role="dialog"
               aria-modal="true"
               aria-label="Navigation"
             >
-              <div className="flex h-16 items-center justify-between border-b border-white/[0.08] px-4">
+              <div className="flex h-16 items-center justify-between border-b border-white/8 px-4">
                 <span className="flex items-center gap-2.5">
                   <span className="grid size-8 place-items-center rounded-lg bg-sky font-display text-sm font-bold text-ink">
                     S
@@ -83,7 +83,7 @@ export function AppShell() {
                   type="button"
                   onClick={() => setMobileNavOpen(false)}
                   aria-label="Close navigation"
-                  className="grid size-10 place-items-center rounded-lg text-paper-dim hover:bg-white/[0.07] hover:text-paper"
+                  className="grid size-10 place-items-center rounded-lg text-paper-dim hover:bg-white/7 hover:text-paper"
                 >
                   <X className="size-5" />
                 </button>
@@ -98,7 +98,7 @@ export function AppShell() {
                     badge={item.badge}
                   />
                 ))}
-                <div className="mt-4 border-t border-white/[0.08] pt-3">
+                <div className="mt-4 border-t border-white/8 pt-3">
                   {sidebarFooterItems.map((item) => (
                     <AnimatedLink
                       key={item.path}

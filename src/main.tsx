@@ -4,6 +4,7 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import App from './App.tsx'
 import { ErrorBoundary } from '@/components/ErrorBoundary'
+import { AuthProvider } from '@/features/auth/authContext'
 import { ToastProvider } from '@/hooks/ToastProvider'
 import './index.css'
 
@@ -13,9 +14,11 @@ createRoot(document.getElementById('root')!).render(
     <MotionConfig reducedMotion="user">
       <ErrorBoundary>
         <BrowserRouter>
-          <ToastProvider>
-            <App />
-          </ToastProvider>
+          <AuthProvider>
+            <ToastProvider>
+              <App />
+            </ToastProvider>
+          </AuthProvider>
         </BrowserRouter>
       </ErrorBoundary>
     </MotionConfig>

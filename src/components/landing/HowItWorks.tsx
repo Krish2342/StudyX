@@ -5,7 +5,7 @@ const steps = [
   {
     step: '01',
     title: 'Find',
-    body: 'Search across notes, books, papers and question banks — filtered to your own college, branch and semester.',
+    body: 'Search across notes, books, papers and question banks â€” filtered to your own college, branch and semester.',
   },
   {
     step: '02',
@@ -20,20 +20,20 @@ const steps = [
   {
     step: '04',
     title: 'Share',
-    body: 'Submit your own material once. It reaches the students who actually need it — never as a raw link.',
+    body: 'Submit your own material once. It reaches the students who actually need it â€” never as a raw link.',
   },
 ]
 
 /** The four-step "how StudyX works" band. */
 export function HowItWorks() {
   return (
-    <section id="how-it-works" className="border-y border-white/[0.07] bg-ink-raised/50 py-20 sm:py-24">
+    <section id="how-it-works" className="border-y border-white/7 bg-ink-raised/50 py-20 sm:py-24">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <Reveal>
           <SectionHeading
             eyebrow="How StudyX works"
             title="Four steps from stuck to prepared"
-            description="The same loop every semester — without hunting through five group chats for one PDF."
+            description="The same loop every semester â€” without hunting through five group chats for one PDF."
           />
         </Reveal>
 

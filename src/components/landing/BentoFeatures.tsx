@@ -5,7 +5,7 @@ import { SectionHeading } from '@/components/ui/SectionHeading'
 import { Badge } from '@/components/ui/Badge'
 
 /**
- * Bento feature grid — deliberately varied card sizes so the layout
+ * Bento feature grid Ã¢â‚¬â€ deliberately varied card sizes so the layout
  * never reads as a row of identical boxes.
  */
 export function BentoFeatures() {
@@ -16,17 +16,17 @@ export function BentoFeatures() {
           <SectionHeading
             eyebrow="Why StudyX"
             title="Built for the whole study loop"
-            description="Find → study → understand → practice → prepare → share, all inside one focused dark workspace."
+            description="Find Ã¢â€ â€™ study Ã¢â€ â€™ understand Ã¢â€ â€™ practice Ã¢â€ â€™ prepare Ã¢â€ â€™ share, all inside one focused dark workspace."
           />
         </Reveal>
 
         <Stagger className="mt-14 grid grid-cols-1 gap-4 md:grid-cols-3 md:grid-rows-5">
-          {/* Wide — resource library */}
+          {/* Wide Ã¢â‚¬â€ resource library */}
           <StaggerItem className="md:col-span-2 md:row-span-3">
             <BentoCard
               icon={Compass}
               title="A library that knows your syllabus"
-              body="Notes, books, previous year papers, question banks, lab manuals and PPTs — filtered by your college, branch and semester, so nothing irrelevant ever appears."
+              body="Notes, books, previous year papers, question banks, lab manuals and PPTs Ã¢â‚¬â€ filtered by your college, branch and semester, so nothing irrelevant ever appears."
               badge="10 categories"
               tall
             >
@@ -38,17 +38,17 @@ export function BentoFeatures() {
             </BentoCard>
           </StaggerItem>
 
-          {/* Tall — AI tools */}
+          {/* Tall Ã¢â‚¬â€ AI tools */}
           <StaggerItem className="md:row-span-4">
             <BentoCard
               icon={GraduationCap}
               title="AI that fits how you're examined"
-              body="Choose your source, your marks and your output language — then generate, copy, save or regenerate."
-              badge="13 tools"
+              body="Choose your source, your marks and your output language Ã¢â‚¬â€ then generate, copy, save or regenerate."
+              badge="Available now"
               tall
             >
               <ul className="mt-5 space-y-2.5">
-                {['Exam Ready Answer', 'Quiz Generator', 'AI Study Plan', 'Weak Topic Detection', 'Summary Generator'].map(
+                {['Explain a topic', 'Translate text'].map(
                   (t) => (
                     <li key={t} className="flex items-center gap-2.5 text-[13px] text-paper-dim">
                       <span className="size-1.5 shrink-0 rounded-full bg-sky" aria-hidden="true" />
@@ -60,17 +60,17 @@ export function BentoFeatures() {
             </BentoCard>
           </StaggerItem>
 
-          {/* Small — community */}
+          {/* Small Ã¢â‚¬â€ community */}
           <StaggerItem>
-            <BentoCard icon={Users} title="Ask, don't scroll" body="Discussions filtered by subject — no noise." />
+            <BentoCard icon={Users} title="Ask, don't scroll" body="Discussions filtered by subject Ã¢â‚¬â€ no noise." />
           </StaggerItem>
 
-          {/* Small — sharing */}
+          {/* Small Ã¢â‚¬â€ sharing */}
           <StaggerItem>
             <BentoCard icon={FileText} title="Share once, help many" body="Submit a Drive link; students get a clean card, never a raw URL." />
           </StaggerItem>
 
-          {/* Wide bottom — trust */}
+          {/* Wide bottom Ã¢â‚¬â€ trust */}
           <StaggerItem className="md:col-span-2">
             <BentoCard
               icon={ShieldCheck}
@@ -103,8 +103,8 @@ function BentoCard({
   return (
     <div
       className={[
-        'group relative flex h-full flex-col overflow-hidden rounded-[var(--radius-card)]',
-        'border border-white/[0.09] bg-ink-raised p-6',
+        'group relative flex h-full flex-col overflow-hidden rounded-card',
+        'border border-white/9 bg-ink-raised p-6',
         'shadow-[0_1px_2px_rgba(0,0,0,0.45),0_16px_40px_rgba(0,0,0,0.3)]',
         'transition-[transform,border-color] duration-300 ease-out-expo hover:-translate-y-1 hover:border-sky/30',
         'surface-lit',

@@ -1,11 +1,10 @@
 import { motion } from 'motion/react'
 import { ArrowRight, Sparkles } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { demoStats } from '@/data/dashboard'
-import { demoStudent } from '@/data/student'
 import { Stagger, StaggerItem } from '@/components/landing/Reveal'
 import { Card } from '@/components/ui/Card'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
+import { useAuth } from '@/features/auth/useAuth'
 
 function greeting(): string {
   const h = new Date().getHours()
@@ -17,6 +16,11 @@ function greeting(): string {
 /** Hero card of the dashboard: greeting, academic info and headline stats. */
 export function GreetingCard() {
   const reduced = useReducedMotion()
+  const { profile } = useAuth()
+  const name = profile?.full_name ?? 'Student'
+  const branch = profile?.branch?.name ?? 'Complete your profile'
+  const semester = profile?.semester?.number
+  const college = profile?.college?.name ?? 'StudyX workspace'
 
   return (
     <Card interactive={false} className="md:col-span-2 lg:col-span-3">
@@ -29,12 +33,12 @@ export function GreetingCard() {
               {greeting()}
             </p>
             <h1 className="mt-2 font-display text-2xl font-semibold tracking-tight text-paper sm:text-3xl">
-              {demoStudent.name} 👋
+              {name} 👋
             </h1>
             <p className="mt-2 text-sm leading-6 text-paper-dim">
-              {demoStudent.branch} · Semester {demoStudent.semester}
+              {branch}{semester ? ` · Semester ${semester}` : ''}
               <span className="mx-2 text-paper-faint">|</span>
-              {demoStudent.college}
+              {college}
             </p>
           </div>
 
@@ -49,15 +53,16 @@ export function GreetingCard() {
         </div>
 
         <Stagger className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-          {demoStats.map((s) => (
-            <StaggerItem key={s.label}>
-              <motion.div
-                whileHover={reduced ? undefined : { y: -2 }}
-                className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-3.5"
-              >
-                <p className="font-display text-xl font-semibold tabular-nums text-paper">{s.value}</p>
-                <p className="mt-0.5 truncate text-[11px] text-paper-faint">{s.label}</p>
-                <p className="mt-1 text-[10px] font-medium text-sky">{s.delta}</p>
+          {[
+            ['Your college', college],
+            ['Your branch', branch],
+            ['Semester', semester ? `Semester ${semester}` : 'Not set'],
+            ['Account', 'Active'],
+          ].map(([value, label]) => (
+            <StaggerItem key={label}>
+              <motion.div whileHover={reduced ? undefined : { y: -2 }} className="rounded-xl border border-white/10 bg-white/5 p-3.5">
+                <p className="truncate text-sm font-semibold text-paper">{value}</p>
+                <p className="mt-1 text-[11px] text-paper-faint">{label}</p>
               </motion.div>
             </StaggerItem>
           ))}

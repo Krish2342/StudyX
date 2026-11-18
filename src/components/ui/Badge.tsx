@@ -3,10 +3,10 @@ import type { HTMLAttributes } from 'react'
 type Tone = 'neutral' | 'accent' | 'success' | 'warning'
 
 const tones: Record<Tone, string> = {
-  neutral: 'bg-white/[0.07] text-paper-dim border-white/10',
+  neutral: 'bg-white/7 text-paper-dim border-white/10',
   accent: 'bg-sky-wash text-sky border-sky/35',
-  success: 'bg-white/[0.07] text-paper border-white/15',
-  warning: 'bg-white/[0.07] text-paper-dim border-white/15',
+  success: 'bg-white/7 text-paper border-white/15',
+  warning: 'bg-white/7 text-paper-dim border-white/15',
 }
 
 export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {

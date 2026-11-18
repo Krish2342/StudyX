@@ -10,7 +10,7 @@ export interface PlaceholderProps {
 
 /**
  * Honest holding page for a StudyX section that is not available yet.
- * Wording must stay product-facing — no build/milestone jargon on screen.
+ * Wording must stay product-facing â€” no build/milestone jargon on screen.
  */
 export function Placeholder({ title, description }: PlaceholderProps) {
   return (
@@ -26,7 +26,7 @@ export function Placeholder({ title, description }: PlaceholderProps) {
       <h1 className="mt-4 font-display text-3xl font-semibold tracking-tight text-paper sm:text-4xl">{title}</h1>
       <p className="mt-3 max-w-xl text-base leading-7 text-paper-dim">{description}</p>
 
-      <p className="mt-6 max-w-lg rounded-xl border border-white/[0.09] bg-ink-raised px-4 py-3 text-sm leading-6 text-paper-faint">
+      <p className="mt-6 max-w-lg rounded-xl border border-white/9 bg-ink-raised px-4 py-3 text-sm leading-6 text-paper-faint">
         This section is still being prepared. Your dashboard, search and saved items are ready to
         use in the meantime.
       </p>

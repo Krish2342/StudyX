@@ -26,7 +26,7 @@ export function Navbar() {
     <header
       className={[
         'sticky top-0 z-50 transition-colors duration-300',
-        scrolled ? 'border-b border-white/[0.08] bg-ink/85 backdrop-blur-md' : 'border-b border-transparent',
+        scrolled ? 'border-b border-white/8 bg-ink/85 backdrop-blur-md' : 'border-b border-transparent',
       ].join(' ')}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-5 sm:px-8">
@@ -40,7 +40,7 @@ export function Navbar() {
             <a
               key={l.href}
               href={l.href}
-              className="rounded-lg px-3.5 py-2 text-sm text-paper-dim transition-colors hover:bg-white/[0.06] hover:text-paper"
+              className="rounded-lg px-3.5 py-2 text-sm text-paper-dim transition-colors hover:bg-white/6 hover:text-paper"
             >
               {l.label}
             </a>
@@ -48,12 +48,12 @@ export function Navbar() {
         </nav>
 
         <div className="hidden items-center gap-2.5 md:flex">
-          <Link to="/app">
+          <Link to="/login">
             <Button variant="ghost" size="sm">
               Log in
             </Button>
           </Link>
-          <Link to="/app">
+          <Link to="/login">
             <Button size="sm">Get started</Button>
           </Link>
         </div>
@@ -63,7 +63,7 @@ export function Navbar() {
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
           aria-label={open ? 'Close menu' : 'Open menu'}
-          className="grid size-10 place-items-center rounded-lg text-paper-dim transition-colors hover:bg-white/[0.07] hover:text-paper md:hidden"
+          className="grid size-10 place-items-center rounded-lg text-paper-dim transition-colors hover:bg-white/7 hover:text-paper md:hidden"
         >
           {open ? <X className="size-5" /> : <Menu className="size-5" />}
         </button>
@@ -73,7 +73,7 @@ export function Navbar() {
         <motion.div
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: 'auto' }}
-          className="overflow-hidden border-t border-white/[0.08] bg-ink-raised md:hidden"
+          className="overflow-hidden border-t border-white/8 bg-ink-raised md:hidden"
         >
           <nav aria-label="Mobile" className="flex flex-col gap-1 px-5 py-4">
             {links.map((l) => (
@@ -81,18 +81,18 @@ export function Navbar() {
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="rounded-lg px-3 py-3 text-sm text-paper-dim transition-colors hover:bg-white/[0.06] hover:text-paper"
+                className="rounded-lg px-3 py-3 text-sm text-paper-dim transition-colors hover:bg-white/6 hover:text-paper"
               >
                 {l.label}
               </a>
             ))}
-            <div className="mt-3 flex flex-col gap-2.5 border-t border-white/[0.08] pt-4">
-              <Link to="/app" onClick={() => setOpen(false)}>
+            <div className="mt-3 flex flex-col gap-2.5 border-t border-white/8 pt-4">
+              <Link to="/login" onClick={() => setOpen(false)}>
                 <Button variant="secondary" fullWidth>
                   Log in
                 </Button>
               </Link>
-              <Link to="/app" onClick={() => setOpen(false)}>
+              <Link to="/login" onClick={() => setOpen(false)}>
                 <Button fullWidth>Get started</Button>
               </Link>
             </div>

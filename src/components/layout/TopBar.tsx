@@ -30,13 +30,13 @@ export function TopBar({ onOpenMobileNav }: TopBarProps) {
   const toggle = (menu: Exclude<OpenMenu, null>) => setOpenMenu((m) => (m === menu ? null : menu))
 
   return (
-    <header className="sticky top-0 z-40 border-b border-white/[0.08] bg-ink/85 backdrop-blur-md">
+    <header className="sticky top-0 z-40 border-b border-white/8 bg-ink/85 backdrop-blur-md">
       <div ref={barRef} className="flex h-16 items-center gap-3 px-4 sm:px-6">
         <button
           type="button"
           onClick={onOpenMobileNav}
           aria-label="Open navigation menu"
-          className="grid size-10 shrink-0 place-items-center rounded-lg text-paper-dim transition-colors hover:bg-white/[0.07] hover:text-paper lg:hidden"
+          className="grid size-10 shrink-0 place-items-center rounded-lg text-paper-dim transition-colors hover:bg-white/7 hover:text-paper lg:hidden"
         >
           <Menu className="size-5" />
         </button>
@@ -58,7 +58,7 @@ export function TopBar({ onOpenMobileNav }: TopBarProps) {
             onClick={() => setSearchOpen((v) => !v)}
             aria-label="Search"
             aria-expanded={searchOpen}
-            className="grid size-10 place-items-center rounded-lg text-paper-dim transition-colors hover:bg-white/[0.07] hover:text-paper lg:hidden"
+            className="grid size-10 place-items-center rounded-lg text-paper-dim transition-colors hover:bg-white/7 hover:text-paper lg:hidden"
           >
             <Search className="size-5" />
           </button>
@@ -76,7 +76,7 @@ export function TopBar({ onOpenMobileNav }: TopBarProps) {
         </div>
       </div>
 
-      {/* Mobile search — revealed by the search button */}
+      {/* Mobile search Ã¢â‚¬â€ revealed by the search button */}
       <AnimatePresence initial={false}>
         {searchOpen && (
           <motion.div
@@ -84,7 +84,7 @@ export function TopBar({ onOpenMobileNav }: TopBarProps) {
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="overflow-hidden border-t border-white/[0.08] lg:hidden"
+            className="overflow-hidden border-t border-white/8 lg:hidden"
           >
             <div className="px-4 py-3 sm:px-6">
               <GlobalSearch />

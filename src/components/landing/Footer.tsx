@@ -3,7 +3,7 @@ import { FooterSocialLinks } from '@/components/landing/FooterSocialLinks'
 
 /*
  * Only pages that exist are listed here. Anything without a real destination
- * stays out of the footer until it is built — a footer full of links back to
+ * stays out of the footer until it is built â€” a footer full of links back to
  * the home page is worse than no link at all.
  */
 const columns = [
@@ -31,7 +31,7 @@ const YEAR = new Date().getFullYear()
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/[0.08] bg-ink-raised/60">
+    <footer className="border-t border-white/8 bg-ink-raised/60">
       <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8">
         <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr]">
           <div className="flex flex-col items-start gap-4 sm:col-span-2 lg:col-span-1">
@@ -67,9 +67,9 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="mt-14 flex flex-col gap-3 border-t border-white/[0.08] pt-7 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-14 flex flex-col gap-3 border-t border-white/8 pt-7 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-xs text-paper-faint">
-            © {YEAR} StudyX. All rights reserved.
+            Â© {YEAR} StudyX. All rights reserved.
           </p>
           <p className="text-xs text-paper-faint">Made for college students.</p>
         </div>

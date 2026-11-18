@@ -5,13 +5,13 @@ import { Card } from '@/components/ui/Card'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 import { motion } from 'motion/react'
 
-/** Four one-tap shortcuts — the "Quick actions" bento tile. */
+/** Four one-tap shortcuts Ã¢â‚¬â€ the "Quick actions" bento tile. */
 export function QuickActionsCard({ className = '' }: { className?: string }) {
   const reduced = useReducedMotion()
 
   return (
     <Card interactive={false} className={className}>
-      <div className="border-b border-white/[0.07] px-5 py-4">
+      <div className="border-b border-white/7 px-5 py-4">
         <h2 className="font-display text-[15px] font-semibold text-paper">Quick actions</h2>
       </div>
 
@@ -21,9 +21,9 @@ export function QuickActionsCard({ className = '' }: { className?: string }) {
             <motion.div whileHover={reduced ? undefined : { x: 3 }} transition={{ type: 'spring', stiffness: 400, damping: 30 }}>
               <Link
                 to={action.path}
-                className="group flex items-center gap-3 rounded-xl border border-white/[0.07] bg-white/[0.025] px-3.5 py-3 transition-colors hover:border-sky/35 hover:bg-sky-wash"
+                className="group flex items-center gap-3 rounded-xl border border-white/7 bg-white/2.5 px-3.5 py-3 transition-colors hover:border-sky/35 hover:bg-sky-wash"
               >
-                <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-white/[0.06] text-paper-dim transition-colors group-hover:bg-sky group-hover:text-ink">
+                <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-white/6 text-paper-dim transition-colors group-hover:bg-sky group-hover:text-ink">
                   <action.icon className="size-4" aria-hidden="true" />
                 </span>
                 <span className="min-w-0 flex-1">

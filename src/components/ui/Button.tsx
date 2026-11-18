@@ -6,7 +6,7 @@ type Variant = 'primary' | 'secondary' | 'ghost' | 'danger'
 type Size = 'sm' | 'md' | 'lg'
 
 /**
- * Motion's button props rather than React's plain ButtonHTMLAttributes —
+ * Motion's button props rather than React's plain ButtonHTMLAttributes ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â
  * the two disagree about onAnimationStart, and Motion's version wins here.
  */
 export interface ButtonProps extends HTMLMotionProps<'button'> {
@@ -20,14 +20,14 @@ export interface ButtonProps extends HTMLMotionProps<'button'> {
 const variants: Record<Variant, string> = {
   primary:
     'bg-sky text-ink font-semibold hover:bg-sky-bright active:bg-sky-deep shadow-[0_8px_24px_rgba(141,185,240,0.22)]',
-  secondary: 'bg-white/[0.06] text-paper border border-white/12 hover:bg-white/[0.10] hover:border-white/20',
-  ghost: 'bg-transparent text-paper-dim hover:text-paper hover:bg-white/[0.06] border border-transparent',
-  danger: 'bg-white/[0.06] text-paper border border-white/12 hover:border-white/30 hover:bg-white/[0.10]',
+  secondary: 'bg-white/6 text-paper border border-white/12 hover:bg-white/10 hover:border-white/20',
+  ghost: 'bg-transparent text-paper-dim hover:text-paper hover:bg-white/6 border border-transparent',
+  danger: 'bg-white/6 text-paper border border-white/12 hover:border-white/30 hover:bg-white/10',
 }
 
 const sizes: Record<Size, string> = {
-  sm: 'h-9 px-3.5 text-sm gap-1.5 rounded-[var(--radius-control)]',
-  md: 'h-11 px-5 text-sm gap-2 rounded-[var(--radius-control)]',
+  sm: 'h-9 px-3.5 text-sm gap-1.5 rounded-control',
+  md: 'h-11 px-5 text-sm gap-2 rounded-control',
   lg: 'h-13 px-7 text-base gap-2.5 rounded-xl',
 }
 

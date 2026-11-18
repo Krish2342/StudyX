@@ -25,6 +25,16 @@
   --color-sky-deep: #6ba3e0; /* soft blue, darker step for pressed */
   --color-sky-wash: rgba(141, 185, 240, 0.12); /* soft blue, faint fill */
 
+  /* --- Admin palette — used ONLY inside /admin.
+         The student app keeps the three-colour system above.
+         White text on #007BA7 is 4.8:1 and #FF2D95 on black is 5.7:1, so both
+         pass WCAG AA; the blue is a surface colour, never small body text. --- */
+  --color-admin-accent: #007ba7;
+  --color-admin-accent-strong: #00688e; /* pressed / hover shade */
+  --color-admin-wash: rgba(0, 123, 167, 0.16);
+  --color-admin-pink: #ff2d95;
+  --color-admin-pink-wash: rgba(255, 45, 149, 0.12);
+
   /* --- Typography --- */
   --font-display: 'Space Grotesk', 'Inter', ui-sans-serif, system-ui, sans-serif;
   --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;

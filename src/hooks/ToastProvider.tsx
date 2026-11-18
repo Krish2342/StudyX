@@ -7,7 +7,6 @@ import { ToastViewport } from '@/components/ui/Toast'
 const AUTO_DISMISS_MS = 3200
 
 /**
- * DEMO-ONLY feedback channel.
  * Toasts live in React state and vanish on refresh — nothing is stored.
  */
 export function ToastProvider({ children }: { children: ReactNode }) {

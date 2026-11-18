@@ -1,17 +1,23 @@
-import { motion } from 'motion/react'
 import { ChevronRight, Clock } from 'lucide-react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { demoContinue } from '@/data/dashboard'
 import { Card } from '@/components/ui/Card'
-import { useReducedMotion } from '@/hooks/useReducedMotion'
+import { useAuth } from '@/features/auth/useAuth'
+import { supabase } from '@/lib/supabase'
+import { fetchSavedResources, type ResourceRecord } from '@/services/resourceService'
 
-/** "Continue Studying" — progress bars for in-flight topics. */
+/** "Continue Studying" â€” progress bars for in-flight topics. */
 export function ContinueCard() {
-  const reduced = useReducedMotion()
+  const { user } = useAuth()
+  const [items, setItems] = useState<ResourceRecord[]>([])
+  useEffect(() => {
+    if (!supabase || !user) return
+    void fetchSavedResources(supabase, user.id).then(setItems).catch(() => setItems([]))
+  }, [user])
 
   return (
     <Card className="md:col-span-2 lg:col-span-2">
-      <div className="flex items-center justify-between border-b border-white/[0.07] px-5 py-4">
+      <div className="flex items-center justify-between border-b border-white/7 px-5 py-4">
         <h2 className="font-display text-[15px] font-semibold text-paper">Continue studying</h2>
         <Link
           to="/app/study-space"
@@ -22,42 +28,19 @@ export function ContinueCard() {
       </div>
 
       <ul className="flex flex-col gap-1 p-2.5">
-        {demoContinue.map((item) => (
+        {items.length ? items.slice(0, 3).map((item) => (
           <li key={item.id}>
             <Link
-              to="/app/explore"
-              className="group flex items-center gap-4 rounded-xl px-3 py-3 transition-colors hover:bg-white/[0.05]"
+              to={`/app/explore/${item.id}`}
+              className="group flex items-center gap-4 rounded-xl px-3 py-3 transition-colors hover:bg-white/5"
             >
               <span className="min-w-0 flex-1">
                 <span className="block truncate text-sm font-medium text-paper">{item.title}</span>
                 <span className="mt-0.5 flex items-center gap-1.5 text-[11px] text-paper-faint">
-                  {item.subject}
+                  {item.subject?.name || item.resource_type}
                   <span aria-hidden="true">·</span>
                   <Clock className="size-3" aria-hidden="true" />
-                  {item.lastSeen}
-                </span>
-              </span>
-
-              <span className="w-24 shrink-0 sm:w-32">
-                <span className="mb-1 flex justify-between text-[10px] text-paper-faint">
-                  <span className="sr-only">Progress</span>
-                  <span className="tabular-nums">{item.progress}%</span>
-                </span>
-                <span
-                  className="block h-1.5 w-full overflow-hidden rounded-full bg-white/[0.09]"
-                  role="progressbar"
-                  aria-valuenow={item.progress}
-                  aria-valuemin={0}
-                  aria-valuemax={100}
-                  aria-label={`${item.title} progress`}
-                >
-                  <motion.span
-                    className="block h-full rounded-full bg-sky"
-                    initial={reduced ? false : { width: 0 }}
-                    whileInView={{ width: `${item.progress}%` }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-                  />
+                  Saved resource
                 </span>
               </span>
 
@@ -67,7 +50,11 @@ export function ContinueCard() {
               />
             </Link>
           </li>
-        ))}
+        )) : (
+          <li className="px-3 py-8 text-center text-sm text-paper-faint">
+            Save resources from Explore to keep them here.
+          </li>
+        )}
       </ul>
     </Card>
   )

@@ -1,17 +1,18 @@
-import { ArrowUpRight, Download, Share2, Star } from 'lucide-react'
-import type { ReactNode } from 'react'
+import { ArrowUpRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { demoResources } from '@/data/dashboard'
 import { Reveal, Stagger, StaggerItem } from '@/components/landing/Reveal'
 import { SectionHeading } from '@/components/ui/SectionHeading'
-import { Badge, RatingBadge } from '@/components/ui/Badge'
+import { Badge } from '@/components/ui/Badge'
 
 /**
- * Resource library showcase — the "proof" band of the landing page.
- * Uses the real demo data so the cards look like the actual product.
+ * Resource library showcase ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â the "proof" band of the landing page.
  */
 export function ResourceShowcase() {
-  const featured = demoResources.slice(0, 3)
+  const featured = [
+    { id: 'notes', title: 'Notes and assignments', category: 'Notes', subject: 'Clear revision material', description: 'Course notes and submitted assignments organized by academic filters.' },
+    { id: 'papers', title: 'Previous year papers', category: 'Previous Year Papers', subject: 'Exam preparation', description: 'Past papers from your college and branch for focused practice.' },
+    { id: 'questions', title: 'Question banks', category: 'Question Banks', subject: 'Practice and preparation', description: 'Questions and study material shared for meaningful exam practice.' },
+  ]
 
   return (
     <section className="py-20 sm:py-24">
@@ -20,16 +21,16 @@ export function ResourceShowcase() {
           <SectionHeading
             eyebrow="Resource library"
             title="Real material, from your own college"
-            description="Every resource is scoped to a college, branch, semester and subject — with ratings, so you know what is worth opening first."
+            description="Every resource is scoped to a college, branch, semester and subject ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â with ratings, so you know what is worth opening first."
           />
         </Reveal>
 
         <Stagger className="mt-14 grid gap-5 md:grid-cols-3">
           {featured.map((r) => (
             <StaggerItem key={r.id}>
-              <article className="group flex h-full flex-col overflow-hidden rounded-[var(--radius-card)] border border-white/[0.09] bg-ink-raised shadow-[0_1px_2px_rgba(0,0,0,0.45),0_16px_40px_rgba(0,0,0,0.3)] transition-[transform,border-color] duration-300 ease-out-expo hover:-translate-y-1 hover:border-sky/30 surface-lit">
-                {/* Cover — abstract, generated from the subject name (no external images) */}
-                <div className="relative grid h-36 place-items-center overflow-hidden border-b border-white/[0.08] bg-ink">
+              <article className="group flex h-full flex-col overflow-hidden rounded-card border border-white/9 bg-ink-raised shadow-[0_1px_2px_rgba(0,0,0,0.45),0_16px_40px_rgba(0,0,0,0.3)] transition-[transform,border-color] duration-300 ease-out-expo hover:-translate-y-1 hover:border-sky/30 surface-lit">
+                {/* Cover ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â abstract, generated from the subject name (no external images) */}
+                <div className="relative grid h-36 place-items-center overflow-hidden border-b border-white/8 bg-ink">
                   <div
                     aria-hidden="true"
                     className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(141,185,240,0.18),transparent_60%)]"
@@ -47,28 +48,15 @@ export function ResourceShowcase() {
 
                   <p className="text-xs leading-5 text-paper-faint">{r.description}</p>
 
-                  <dl className="grid grid-cols-2 gap-x-3 gap-y-1.5 text-[11px]">
-                    <Meta label="Branch" value={r.branch} />
-                    <Meta label="Semester" value={`Sem ${r.semester}`} />
-                    <Meta label="Added by" value={r.addedBy} />
-                    <Meta label="Downloads" value={r.downloads.toLocaleString()} />
+                  <dl className="grid grid-cols-1 gap-x-3 gap-y-1.5 text-[11px]">
+                    <Meta label="Available by" value="College · Branch · Semester" />
                   </dl>
 
-                  <div className="mt-auto flex items-center justify-between gap-3 border-t border-white/[0.08] pt-4">
+                  <div className="mt-auto flex items-center justify-between gap-3 border-t border-white/8 pt-4">
                     <span className="flex items-center gap-3">
-                      <RatingBadge value={r.rating} />
                       <span className="flex items-center gap-1 text-[11px] text-paper-faint">
-                        <Download className="size-3" aria-hidden="true" />
-                        {r.downloads.toLocaleString()}
+                        Browse approved resources
                       </span>
-                    </span>
-                    <span className="flex gap-1.5">
-                      <IconBtn label={`Share ${r.title}`}>
-                        <Share2 className="size-3.5" />
-                      </IconBtn>
-                      <IconBtn label={`Save ${r.title}`}>
-                        <Star className="size-3.5" />
-                      </IconBtn>
                     </span>
                   </div>
                 </div>
@@ -111,17 +99,5 @@ function Meta({ label, value }: { label: string; value: string }) {
       <dt className="text-paper-faint">{label}</dt>
       <dd className="truncate text-paper-dim">{value}</dd>
     </div>
-  )
-}
-
-function IconBtn({ label, children }: { label: string; children: ReactNode }) {
-  return (
-    <button
-      type="button"
-      aria-label={label}
-      className="relative z-10 grid size-8 place-items-center rounded-lg border border-white/10 text-paper-faint transition-colors hover:border-sky/40 hover:text-sky"
-    >
-      {children}
-    </button>
   )
 }

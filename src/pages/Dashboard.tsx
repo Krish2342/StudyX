@@ -1,4 +1,3 @@
-import { demoResources } from '@/data/dashboard'
 import { ActivityCard } from '@/components/dashboard/ActivityCard'
 import { AiToolsCard } from '@/components/dashboard/AiToolsCard'
 import { ContinueCard } from '@/components/dashboard/ContinueCard'
@@ -18,8 +17,6 @@ import { GlobalSearch } from '@/components/layout/GlobalSearch'
  *   [ Requests (2)  ] [ Activity (4) ]
  */
 export function Dashboard() {
-  const recent = demoResources.slice(0, 3)
-  const popular = [...demoResources].sort((a, b) => b.downloads - a.downloads).slice(0, 3)
 
   return (
     <div className="mx-auto w-full max-w-[1400px] px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
@@ -40,14 +37,14 @@ export function Dashboard() {
           title="Recently added"
           actionLabel="Explore"
           actionTo="/app/explore"
-          resources={recent}
+          resources={[]}
         />
         <ResourceListCard
           className="lg:col-span-3"
           title="Popular this week"
           actionLabel="See all"
           actionTo="/app/explore"
-          resources={popular}
+          resources={[]}
         />
 
         <RequestsCard className="lg:col-span-2" />

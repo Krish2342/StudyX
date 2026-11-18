@@ -15,7 +15,7 @@ export interface AnimatedLinkProps {
 
 /**
  * One link used by both the desktop sidebar and the mobile bottom nav.
- * The soft-blue pill slides to the active item — the only place
+ * The soft-blue pill slides to the active item â€” the only place
  * the accent colour is allowed to be dominant.
  */
 export function AnimatedLink({
@@ -107,7 +107,7 @@ export function AnimatedLink({
             <span
               className={[
                 'relative rounded-full px-1.5 py-0.5 text-[10px] font-semibold tabular-nums',
-                isActive ? 'bg-sky text-ink' : 'bg-white/[0.08] text-paper-faint',
+                isActive ? 'bg-sky text-ink' : 'bg-white/8 text-paper-faint',
               ].join(' ')}
             >
               {badge}

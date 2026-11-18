@@ -2,6 +2,104 @@
 
 All notable changes to StudyX. Newest first.
 
+## 2026-11-18 — Production data cleanup
+
+### Changed
+- Removed the hardcoded student, resource, request, community, notification, and dashboard datasets.
+- Connected dashboard cards to saved resources, requests, notifications, discussions, and real account details.
+- Removed invented resource counts, ratings, downloads, and AI-tool counts.
+- Added a real account Settings page and removed the previous settings placeholder.
+- Kept only available AI explanation and translation tools visible as active features.
+
+## 2026-11-17 — Logical login flow
+
+### Added
+- Reworked the login page with responsive product context, clear Google sign-in states, configuration
+  and authentication errors, and a first-login explanation.
+- Protected student routes so signed-out users go to login, incomplete profiles go to onboarding,
+  and suspended accounts go to the suspension screen.
+- Authenticated users visiting `/login` now return to the dashboard or onboarding automatically.
+
+## 2026-11-17 — Milestone 9 quality and deployment preparation
+
+### Added
+- Repeatable `npm run verify` checks for required deployment files, SEO metadata, SPA rewrites,
+  reduced-motion configuration, tracked environment files, and server-only secret names in builds.
+- Updated the deployment checklist with lint and quality verification commands.
+
+### Notes
+- Live RLS, OAuth, Supabase migration, Vercel deployment, and production-domain checks require
+  the configured Supabase, Google Cloud, GitHub, and Vercel accounts.
+
+## 2026-11-17 — Milestone 8 admin controls and analytics
+
+### Added
+- Database-backed admin overview metrics for students, resources, moderation, support, and AI activity.
+- Student search with audited suspend/restore actions that cannot suspend the current administrator.
+- Academic catalog activation controls for colleges, branches, semesters, subjects, and categories.
+- Platform and AI JSON settings with server-side admin authorization and audit entries.
+- Date-range analytics, workflow queues, referral event storage, and read-only admin activity logs.
+- Migration `20261117220000_admin_controls_and_analytics.sql` with referral RLS and privileged admin functions.
+
+### Notes
+- Apply the new migration before testing Milestone 8 against Supabase.
+- Provider credentials remain Supabase Function Secrets; the AI settings page never handles secret values.
+
+## 2026-11-16 — Milestone 7 AI foundation
+
+### Added
+- Secure `ai-generate` Supabase Edge Function with authenticated requests, provider fallback,
+  input validation, timeouts, and no browser-visible provider keys.
+- Gemini and Groq provider adapters in `supabase/functions/_shared/providers.ts`.
+- Daily per-user AI usage limits and private AI history migration.
+- `/app/ai` with explanation and translation request flows.
+
+### Notes
+- Configure only rotated provider keys as Supabase Function Secrets.
+- Remaining AI tools, PDF processing, grounding, and AI history browsing are later Milestone 7 work.
+
+## 2026-11-16 — Milestone 6 workflow foundation
+
+### Added
+- Student request and support pages with owner-scoped lists and creation forms.
+- Community discussions with published-post listing, replies, and creation.
+- Private notifications with individual and bulk read actions.
+- Migration `20261116214000_requests_support_community.sql` for community schema and tightened
+  request/support/community RLS.
+
+### Notes
+- Run `supabase db push` only after reviewing the migration. Real Supabase account and Super Admin
+  verification remains required before calling Milestone 6 complete.
+
+## 2026-11-16 — Milestone 5 student resource experience started
+
+### Added
+- Saved resources page at `/app/saved`.
+- Resource pagination with a Load more action.
+- One-report-per-student resource reporting flow.
+- Server-side view/share counters through a protected Supabase function.
+- Exact future API locations documented for Gemini, Groq, and translation providers.
+
+### Notes
+- Gemini, Groq, and translator keys are not needed for this milestone and must remain server-side.
+- AI study tools and translation are scheduled for Milestone 7 with Edge Function rate limits.
+
+## 2026-11-16 — Milestone 4 resource management
+
+### Added
+- Database migration `20261116195000_resource_management.sql` with student submission policies,
+  catalog indexes, and an audited Super Admin moderation function.
+- Approved resource discovery at `/app/explore`, resource details, Google Drive opening, bookmarks,
+  ratings, native/copy sharing, and empty/loading/error states.
+- Student resource submission at `/app/explore/submit` and submission status tracking in
+  `/app/study-space`.
+- Protected Super Admin moderation at `/admin/resources` with pending, approved, rejected, and
+  removed queues.
+
+### Notes
+- The migration must be applied with `supabase db push` before database workflows can be tested.
+- Cover files remain governed by the private Storage design; the upload UI is not enabled yet.
+
 ## 2026-11-15 — Footer social links
 
 ### Added
@@ -60,7 +158,17 @@ All notable changes to StudyX. Newest first.
 - On-screen notes about the build state (dev-only information moved into code comments).
 
 ### Notes
-- Still frontend-only: no database, no authentication, no AI provider. Data comes from
-  `src/data/` through `demoAdapter`.
+- At that time the student app was still frontend-only: data came from `src/data/` through
+  `demoAdapter`. Supabase foundation and authentication/admin preparation were added in later
+  milestones.
 - Several controls are intentionally honest placeholders (share, sign out, tour, resource request)
   and show "not available yet" messages instead of pretending to work.
+## 2026-11-15
+
+### Milestone 3 — Super Admin access foundation
+
+- Added protected `/admin` routing with fail-closed role verification.
+- Aligned the browser admin check with the database `is_super_admin()` function.
+- Added the admin access screen, denied state, verification state, and retry behavior.
+- Added the authenticated admin overview and planned-section placeholders without fake metrics.
+- Documented the one-time Super Admin bootstrap and local validation commands in `SUPABASE_SETUP.md`.

@@ -3,10 +3,10 @@ import type { HTMLAttributes, ReactNode } from 'react'
 type Tone = 'neutral' | 'accent' | 'success' | 'warning'
 
 const tones: Record<Tone, string> = {
-  neutral: 'bg-white/[0.07] text-paper-dim border-white/10',
+  neutral: 'bg-white/7 text-paper-dim border-white/10',
   accent: 'bg-sky-wash text-sky border-sky/35',
-  success: 'bg-white/[0.07] text-paper border-white/15',
-  warning: 'bg-white/[0.07] text-paper-dim border-white/15',
+  success: 'bg-white/7 text-paper border-white/15',
+  warning: 'bg-white/7 text-paper-dim border-white/15',
 }
 
 export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
@@ -52,7 +52,7 @@ export interface CardProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode
   /** Adds the subtle lift-on-hover treatment. */
   interactive?: boolean
-  /** Removes the top-lit gradient — useful for cards with their own background. */
+  /** Removes the top-lit gradient ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â useful for cards with their own background. */
   plain?: boolean
 }
 
@@ -65,12 +65,12 @@ export function Card({ children, interactive = true, plain = false, className = 
   return (
     <div
       className={[
-        'relative overflow-hidden rounded-[var(--radius-card)]',
-        'border border-white/[0.08] bg-ink-raised',
+        'relative overflow-hidden rounded-card',
+        'border border-white/8 bg-ink-raised',
         'shadow-[0_1px_2px_rgba(0,0,0,0.45),0_14px_38px_rgba(0,0,0,0.32)]',
         plain ? '' : 'surface-lit',
         interactive
-          ? 'transition-[transform,border-color,box-shadow] duration-200 ease-out-expo hover:-translate-y-0.5 hover:border-white/[0.18] hover:shadow-[0_2px_4px_rgba(0,0,0,0.45),0_22px_50px_rgba(0,0,0,0.42)]'
+          ? 'transition-[transform,border-color,box-shadow] duration-200 ease-out-expo hover:-translate-y-0.5 hover:border-white/18 hover:shadow-[0_2px_4px_rgba(0,0,0,0.45),0_22px_50px_rgba(0,0,0,0.42)]'
           : '',
         className,
       ].join(' ')}

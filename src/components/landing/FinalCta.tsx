@@ -12,8 +12,8 @@ export function FinalCta() {
     <section className="py-20 sm:py-24">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <Reveal>
-          <div className="glow-sky relative overflow-hidden rounded-[1.75rem] border border-white/[0.1] bg-ink-raised px-6 py-16 text-center sm:px-12">
-            {/* Perspective floor grid — subtle depth, CSS only */}
+          <div className="glow-sky relative overflow-hidden rounded-[1.75rem] border border-white/10 bg-ink-raised px-6 py-16 text-center sm:px-12">
+            {/* Perspective floor grid â€” subtle depth, CSS only */}
             <div
               aria-hidden="true"
               className="pointer-events-none absolute inset-x-0 bottom-0 h-40 [background-image:linear-gradient(rgba(141,185,240,0.16)_1px,transparent_1px),linear-gradient(90deg,rgba(141,185,240,0.16)_1px,transparent_1px)] [background-size:44px_44px] [mask-image:linear-gradient(to_top,#000,transparent)] [transform:perspective(420px)_rotateX(58deg)] origin-bottom"
@@ -31,7 +31,7 @@ export function FinalCta() {
               <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
                 <Link to="/app" className="w-full sm:w-auto">
                   <Button size="lg" fullWidth icon={<ArrowRight className="size-4.5" />}>
-                    Get started — it's free
+                    Get started â€” it's free
                   </Button>
                 </Link>
                 <Button
@@ -45,7 +45,7 @@ export function FinalCta() {
               </div>
 
               <p className="text-xs text-paper-faint">
-                Takes less than a minute · No credit card required
+                Takes less than a minute Â· No credit card required
               </p>
             </div>
           </div>

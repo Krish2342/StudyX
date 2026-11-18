@@ -19,10 +19,10 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
       animate={{ width: collapsed ? 76 : 248 }}
       transition={{ type: 'spring', stiffness: 320, damping: 34 }}
       aria-label="Main navigation"
-      className="sticky top-0 hidden h-dvh shrink-0 flex-col border-r border-white/[0.08] bg-ink-raised lg:flex"
+      className="sticky top-0 hidden h-dvh shrink-0 flex-col border-r border-white/8 bg-ink-raised lg:flex"
     >
       {/* Brand */}
-      <div className={`flex h-16 items-center border-b border-white/[0.08] ${collapsed ? 'justify-center' : 'px-4'}`}>
+      <div className={`flex h-16 items-center border-b border-white/8 ${collapsed ? 'justify-center' : 'px-4'}`}>
         <Link to="/" className="flex items-center gap-2.5 outline-none" aria-label="StudyX home">
           <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-sky font-display text-sm font-bold text-ink">
             S
@@ -54,7 +54,7 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
       </nav>
 
       {/* Footer nav */}
-      <div className="flex flex-col gap-1 border-t border-white/[0.08] px-3 py-3">
+      <div className="flex flex-col gap-1 border-t border-white/8 px-3 py-3">
         {sidebarFooterItems.map((item) => (
           <AnimatedLink
             key={item.path}
@@ -73,7 +73,7 @@ export function Sidebar({ collapsed, onToggle }: SidebarProps) {
           }}
           aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
           aria-expanded={!collapsed}
-          className="mt-1 flex h-11 items-center gap-3 rounded-xl px-3 text-paper-faint transition-colors duration-150 hover:bg-white/[0.06] hover:text-paper focus-visible:outline-2 focus-visible:outline-sky"
+          className="mt-1 flex h-11 items-center gap-3 rounded-xl px-3 text-paper-faint transition-colors duration-150 hover:bg-white/6 hover:text-paper focus-visible:outline-2 focus-visible:outline-sky"
         >
           {collapsed ? <PanelLeftOpen className="size-[18px]" /> : <PanelLeftClose className="size-[18px]" />}
           {!collapsed && <span className="text-sm">Collapse</span>}

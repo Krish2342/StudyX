@@ -14,7 +14,7 @@ interface ErrorBoundaryState {
  * Catches render errors anywhere below it and shows a calm recovery screen
  * instead of a blank white page.
  *
- * Must be a class component — React only exposes error boundaries as classes.
+ * Must be a class component ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â React only exposes error boundaries as classes.
  * The buttons are plain <a> tags on purpose: if the router itself failed,
  * router <Link>s would not work here.
  */
@@ -27,7 +27,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
 
   componentDidCatch(error: Error, info: ErrorInfo) {
     // Keep the details in the browser console for debugging.
-    // Nothing is sent anywhere — there is no error-reporting service yet.
+    // Nothing is sent anywhere ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â there is no error-reporting service yet.
     console.error('StudyX crashed while rendering:', error, info.componentStack)
   }
 
@@ -49,7 +49,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
           Something went wrong
         </h1>
         <p className="mt-3 max-w-md text-sm leading-6 text-paper-dim">
-          This page ran into an unexpected problem. Reloading usually fixes it — your saved items are
+          This page ran into an unexpected problem. Reloading usually fixes it ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Â your saved items are
           kept in your browser.
         </p>
 
@@ -57,14 +57,14 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
           <button
             type="button"
             onClick={this.handleReload}
-            className="inline-flex h-11 items-center justify-center gap-2 rounded-[var(--radius-control)] bg-sky px-5 text-sm font-semibold text-ink transition-colors hover:bg-sky-bright focus-visible:outline-2 focus-visible:outline-sky focus-visible:outline-offset-2"
+            className="inline-flex h-11 items-center justify-center gap-2 rounded-control bg-sky px-5 text-sm font-semibold text-ink transition-colors hover:bg-sky-bright focus-visible:outline-2 focus-visible:outline-sky focus-visible:outline-offset-2"
           >
             <RefreshCw className="size-4" aria-hidden="true" />
             Reload the page
           </button>
           <a
             href="/"
-            className="inline-flex h-11 items-center justify-center rounded-[var(--radius-control)] border border-white/12 bg-white/[0.06] px-5 text-sm text-paper transition-colors hover:border-white/20 hover:bg-white/[0.1] focus-visible:outline-2 focus-visible:outline-sky focus-visible:outline-offset-2"
+            className="inline-flex h-11 items-center justify-center rounded-control border border-white/12 bg-white/6 px-5 text-sm text-paper transition-colors hover:border-white/20 hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-sky focus-visible:outline-offset-2"
           >
             Back to home
           </a>

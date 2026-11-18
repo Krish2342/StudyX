@@ -1,8 +1,10 @@
 import { AnimatePresence, motion } from 'motion/react'
 import { Bell } from 'lucide-react'
-import { useState } from 'react'
-import { demoNotifications } from '@/data/dashboard'
+import { useEffect, useState } from 'react'
 import { useToast } from '@/hooks/useToast'
+import { useAuth } from '@/features/auth/useAuth'
+import { supabase } from '@/lib/supabase'
+import { fetchNotifications, markAllNotificationsRead, markNotificationRead, type NotificationRecord } from '@/services/workflowService'
 
 export interface NotificationMenuProps {
   open: boolean
@@ -10,14 +12,21 @@ export interface NotificationMenuProps {
   onClose: () => void
 }
 
-/** Bell + dropdown. State for read/unread lives here (demo only). */
+/** Bell + database-backed notification dropdown. */
 export function NotificationMenu({ open, onToggle, onClose }: NotificationMenuProps) {
-  const [items, setItems] = useState(demoNotifications)
+  const { user } = useAuth()
+  const [items, setItems] = useState<NotificationRecord[]>([])
+  useEffect(() => {
+    if (!supabase || !user) return
+    void fetchNotifications(supabase, user.id).then(setItems).catch(() => setItems([]))
+  }, [user])
   const { toast } = useToast()
-  const unread = items.filter((n) => !n.read).length
+  const unread = items.filter((n) => !n.is_read).length
 
-  function markAllRead() {
-    setItems((list) => list.map((n) => ({ ...n, read: true })))
+  async function markAllRead() {
+    if (!supabase || !user) return
+    await markAllNotificationsRead(supabase, user.id)
+    setItems((list) => list.map((n) => ({ ...n, is_read: true })))
     toast('All notifications marked as read', 'success')
   }
 
@@ -28,7 +37,7 @@ export function NotificationMenu({ open, onToggle, onClose }: NotificationMenuPr
         onClick={onToggle}
         aria-label={`Notifications${unread ? `, ${unread} unread` : ''}`}
         aria-expanded={open}
-        className="relative grid size-10 place-items-center rounded-lg text-paper-dim transition-colors hover:bg-white/[0.07] hover:text-paper"
+        className="relative grid size-10 place-items-center rounded-lg text-paper-dim transition-colors hover:bg-white/7 hover:text-paper"
       >
         <Bell className="size-5" />
         {unread > 0 && (
@@ -47,7 +56,7 @@ export function NotificationMenu({ open, onToggle, onClose }: NotificationMenuPr
             transition={{ duration: 0.16, ease: [0.16, 1, 0.3, 1] }}
             className="absolute right-0 z-50 mt-2 w-[min(22rem,calc(100vw-2rem))] overflow-hidden rounded-2xl border border-white/10 bg-ink-raised-2 shadow-[0_24px_60px_rgba(0,0,0,0.5)]"
           >
-            <div className="flex items-center justify-between border-b border-white/[0.08] px-4 py-3">
+            <div className="flex items-center justify-between border-b border-white/8 px-4 py-3">
               <span className="text-sm font-semibold text-paper">Notifications</span>
               <button type="button" onClick={markAllRead} className="text-xs text-sky hover:underline">
                 Mark all read
@@ -61,19 +70,20 @@ export function NotificationMenu({ open, onToggle, onClose }: NotificationMenuPr
                     type="button"
                     onClick={() => {
                       onClose()
-                      toast(`Opened: ${n.title}`, 'info')
+                      if (supabase && user && !n.is_read) void markNotificationRead(supabase, user.id, n.id)
+                      if (n.target_url) window.location.assign(n.target_url)
                     }}
-                    className="flex w-full gap-3 rounded-xl px-3 py-2.5 text-left transition-colors hover:bg-white/[0.07]"
+                    className="flex w-full gap-3 rounded-xl px-3 py-2.5 text-left transition-colors hover:bg-white/7"
                   >
                     <span
-                      className={`mt-1.5 size-1.5 shrink-0 rounded-full ${n.read ? 'bg-white/20' : 'bg-sky'}`}
+                      className={`mt-1.5 size-1.5 shrink-0 rounded-full ${n.is_read ? 'bg-white/20' : 'bg-sky'}`}
                       aria-hidden="true"
                     />
                     <span className="min-w-0 flex-1">
                       <span className="block text-sm font-medium text-paper">{n.title}</span>
                       <span className="block text-xs leading-5 text-paper-faint">{n.body}</span>
                     </span>
-                    <span className="shrink-0 text-[11px] text-paper-faint">{n.time}</span>
+                    <span className="shrink-0 text-[11px] text-paper-faint">{new Date(n.created_at).toLocaleDateString()}</span>
                   </button>
                 </li>
               ))}

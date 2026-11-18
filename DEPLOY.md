@@ -1,7 +1,8 @@
 # Deploying StudyX to Vercel
 
-StudyX is a **static frontend** (React + Vite). There is no backend, no database and no API keys,
-so deployment is short and safe.
+StudyX is a React + Vite frontend backed by Supabase Auth and PostgreSQL foundations. The browser
+uses only the public Supabase URL and publishable key; service-role and AI provider keys remain
+server-side.
 
 Everything needed is already in the repo:
 
@@ -59,7 +60,14 @@ passwords or tokens into a chat.
    | Output Directory | `dist` |
    | Install Command | `npm install` |
 
-5. Leave **Environment Variables** empty — this project needs none.
+5. Add these Vercel Environment Variables for Preview and Production:
+
+   | Name | Value |
+   | --- | --- |
+   | `VITE_SUPABASE_URL` | Your Supabase project URL |
+   | `VITE_SUPABASE_ANON_KEY` | Your Supabase publishable key |
+
+   Never add a Supabase secret/service-role key or AI provider key here.
 6. Click **Deploy**.
 
 The first build takes about a minute. When it finishes you get a URL like
@@ -71,7 +79,7 @@ Visit each of these on your phone **and** your laptop:
 
 - `https://YOUR-PROJECT.vercel.app/` — landing page
 - `https://YOUR-PROJECT.vercel.app/app` — dashboard
-- `https://YOUR-PROJECT.vercel.app/app/explore` — "Not yet available" page
+- `https://YOUR-PROJECT.vercel.app/app/explore` — resource search and filters
 - `https://YOUR-PROJECT.vercel.app/robots.txt`
 - `https://YOUR-PROJECT.vercel.app/sitemap.xml`
 - `https://YOUR-PROJECT.vercel.app/og-image.png`
@@ -164,6 +172,8 @@ Some apps cache link previews for days. Test your card at
 ```powershell
 cd C:\NoteShareWebsite
 npm run build     # must finish with zero errors
+npm run lint      # static code quality
+npm run verify    # deployment, accessibility and secret-safety checks
 npm run preview   # open the printed http://localhost:4173 and click around
 ```
 

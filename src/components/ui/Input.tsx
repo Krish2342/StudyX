@@ -1,10 +1,10 @@
 import type { InputHTMLAttributes, ReactNode, TextareaHTMLAttributes } from 'react'
 
 const fieldBase = [
-  'w-full rounded-[var(--radius-control)] border border-white/12 bg-white/[0.04]',
+  'w-full rounded-control border border-white/12 bg-white/4',
   'text-paper placeholder:text-paper-faint',
   'transition-[border-color,background-color,box-shadow] duration-150',
-  'focus:border-sky/70 focus:bg-white/[0.06] focus:shadow-[0_0_0_3px_rgba(141,185,240,0.16)]',
+  'focus:border-sky/70 focus:bg-white/6 focus:shadow-[0_0_0_3px_rgba(141,185,240,0.16)]',
   'focus:outline-none',
   'disabled:opacity-50 disabled:cursor-not-allowed',
 ].join(' ')
